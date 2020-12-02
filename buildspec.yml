@@ -13,5 +13,5 @@ phases:
       - GROUPID=$(echo "$CODEBUILD_BUILD_ID" | cut -d ":" -f 1)
       - STREAMID=$(echo "$CODEBUILD_BUILD_ID" | cut -d ":" -f 2)
       - echo "$STREAMID"
-      - EVENTS=$(aws logs get-log-events --log-group-name "/aws/codebuild/$GROUPID" --log-stream-name "$STREAMID" --output text | tail -r -n 80)
+      - EVENTS=$(aws logs get-log-events --log-group-name "/aws/codebuild/$GROUPID" --log-stream-name "$STREAMID" --output text | tail -n 80)
       - curl "$keybase_endpoint" -d '{"msg":"'"$EVENTS"'"}'
